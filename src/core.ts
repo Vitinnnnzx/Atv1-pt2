@@ -15,7 +15,6 @@ export class Item {
     }
   }
 }
-
 export class ToDo {
   private filepath: string;
   private items: Promise<Item[]>;
@@ -82,6 +81,3 @@ export class ToDo {
     return items[index];
   }
 }
-
-console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
-process.exit(1);
