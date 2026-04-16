@@ -38,12 +38,38 @@ if (command === "list") {
 }
 
 if (command === "update") {
-  // ...
+  const index = Number(process.argv[4])
+  const newDescription = process.argv[5]
+
+  if (isNaN(index)) {
+    console.error("Por favor, forneça o índice do item")
+    process.exit(1)
+  }
+
+  if (!newDescription) {
+    console.error("Por favor, forneça a nova descrição do item.")
+    process.exit(1);
+  }
+
+  const newItem = new Item(newDescription)
+  await todo.updateItem(index, newItem)
+  console.log(`Item ${index} atualizado com sucesso!`)
+  process.exit(0)
 }
 
 if (command === "remove") {
+  const index = Number(process.argv[4])
 
+  if (isNaN(index)) {
+    console.error("Por favor, forneça o índice do item.")
+    process.exit(1)
+  }
+
+  await todo.removeItem(index);
+  console.log(`Item ${index} removido com sucesso!`);
+  process.exit(0);
 }
+
 
 console.error("Comando desconhecido. Use 'add', 'list', 'update' ou 'remove'.");
 process.exit(1);
